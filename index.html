@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An accessible, responsive FAQ accordion component built with semantic HTML, modern CSS, and vanilla JavaScript." />
+  <title>Accessible FAQ Accordion | Interactive UI Component</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">Week 2 · Interactive UI Component</p>
+      <h1>Accessible FAQ Accordion</h1>
+      <p class="page-intro">
+        A reusable, keyboard-friendly accordion for FAQs, product details, and
+        settings panels. It supports single- or multi-open behavior, smooth
+        height transitions, and graceful fallbacks.
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!--
+      Accordion component.
+
+      Accessibility model:
+      - Each trigger is a <button> inside an <h3>, so screen readers can
+        navigate by heading and activate the control with Enter or Space.
+      - aria-expanded communicates whether a panel is open.
+      - aria-controls connects each button to its panel ID.
+      - The region role and aria-labelledby give each open panel a name.
+    -->
+    <section class="accordion-section" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+
+      <div
+        class="accordion"
+        data-accordion
+        data-accordion-mode="single"
+        data-default-open="0"
+      >
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button
+              class="accordion-trigger"
+              type="button"
+              id="faq-trigger-1"
+              aria-expanded="false"
+              aria-controls="faq-panel-1"
+            >
+              <span>What is an accordion component?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+
+          <div
+            class="accordion-panel"
+            id="faq-panel-1"
+            role="region"
+            aria-labelledby="faq-trigger-1"
+            hidden
+          >
+            <div class="accordion-panel-inner">
+              <p>
+                An accordion is a vertically stacked set of expandable sections.
+                It helps users scan content quickly while keeping less-important
+                details hidden until needed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button
+              class="accordion-trigger"
+              type="button"
+              id="faq-trigger-2"
+              aria-expanded="false"
+              aria-controls="faq-panel-2"
+            >
+              <span>How does keyboard navigation work?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+
+          <div
+            class="accordion-panel"
+            id="faq-panel-2"
+            role="region"
+            aria-labelledby="faq-trigger-2"
+            hidden
+          >
+            <div class="accordion-panel-inner">
+              <p>
+                Press <kbd>Tab</kbd> to reach an accordion header, then use
+                <kbd>Enter</kbd> or <kbd>Space</kbd> to expand or collapse it.
+                Use <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> to move
+                between headers, <kbd>Home</kbd> for the first header, and
+                <kbd>End</kbd> for the last.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button
+              class="accordion-trigger"
+              type="button"
+              id="faq-trigger-3"
+              aria-expanded="false"
+              aria-controls="faq-panel-3"
+            >
+              <span>Can multiple panels stay open?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+
+          <div
+            class="accordion-panel"
+            id="faq-panel-3"
+            role="region"
+            aria-labelledby="faq-trigger-3"
+            hidden
+          >
+            <div class="accordion-panel-inner">
+              <p>
+                Yes. This component supports two modes. Set
+                <code>data-accordion-mode="single"</code> to allow only one open
+                panel, or <code>data-accordion-mode="multiple"</code> to let
+                users open several panels at once.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-heading">
+            <button
+              class="accordion-trigger"
+              type="button"
+              id="faq-trigger-4"
+              aria-expanded="false"
+              aria-controls="faq-panel-4"
+            >
+              <span>What happens if JavaScript is unavailable?</span>
+              <span class="accordion-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+
+          <div
+            class="accordion-panel"
+            id="faq-panel-4"
+            role="region"
+            aria-labelledby="faq-trigger-4"
+            hidden
+          >
+            <div class="accordion-panel-inner">
+              <p>
+                The component uses a progressive-enhancement fallback. If
+                JavaScript cannot run, all panels are displayed in an expanded,
+                readable state and the buttons are disabled, so no content is
+                lost.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="fallback-note">
+          JavaScript is disabled. All FAQ answers are shown below in expanded
+          form.
+        </p>
+      </noscript>
+    </section>
+
+    <!-- Demonstration area for the reusable API -->
+    <section class="demo-section" aria-labelledby="demo-heading">
+      <h2 id="demo-heading">Try the component controls</h2>
+      <p>
+        These controls demonstrate the component’s public API without changing
+        the underlying HTML structure.
+      </p>
+
+      <div class="demo-controls">
+        <button class="btn" type="button" data-action="open-all">Open all</button>
+        <button class="btn" type="button" data-action="close-all">Close all</button>
+        <button class="btn" type="button" data-action="toggle-mode">
+          Switch to multiple-open mode
+        </button>
+      </div>
+
+      <p class="demo-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p>
+        Built with semantic HTML5, modern CSS, and vanilla JavaScript. No
+        external libraries required.
+      </p>
+    </div>
+  </footer>
+
+  <script src="accordion.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>
